@@ -123,7 +123,7 @@ function NoteListItem(props: NoteListItemProps, ref: any) {
 	let thumbComp = null;
 
 
-	abstractComp = <span>{displayAbstract}</span>;
+	abstractComp = <span style={{overflow: 'hidden', color: 'black'	}}>{displayAbstract}</span>;
 	// thumbComp = <img src='{{displayThumb}}'/>;
 	thumbComp = <img src='https://img95.699pic.com/photo/30791/1242.jpg_wh300.jpg' width={80} height={80}/>;
 
@@ -161,7 +161,7 @@ function NoteListItem(props: NoteListItemProps, ref: any) {
 		// https://reactjs.org/docs/dom-elements.html#dangerouslysetinnerhtml
 		titleComp = <span dangerouslySetInnerHTML={{ __html: titleElement.outerHTML }}></span>;
 	} else {
-		titleComp = <span>{displayTitle}</span>;
+		titleComp = <span style={{fontSize: 16, fontWeight: 'bold'}}>{displayTitle}</span>;
 	}
 
 	const watchedIconStyle = {
@@ -204,7 +204,7 @@ function NoteListItem(props: NoteListItemProps, ref: any) {
 			onDragStart={props.onDragStart}
 			data-id={item.id}>
 				<div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: 85 }}>
-					<div style={{ display: 'flex', flexDirection: 'row', width: '100%', height: 85 }}>
+					<div style={{ display: 'flex', flexDirection: 'row', width: '100%' }}>
 						{watchedIcon}
 						{titleComp}
 					</div>
