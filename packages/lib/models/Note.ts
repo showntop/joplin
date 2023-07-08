@@ -312,7 +312,7 @@ export default class Note extends BaseItem {
 	public static previewFields(options: any = null) {
 		options = { includeTimestamps: true, ...options };
 
-		const output = ['id', 'title', 'is_todo', 'todo_completed', 'todo_due', 'parent_id', 'encryption_applied', 'order', 'markup_language', 'is_conflict', 'is_shared'];
+		const output = ['id', 'title', 'abstract', 'thumb', 'is_todo', 'todo_completed', 'todo_due', 'parent_id', 'encryption_applied', 'order', 'markup_language', 'is_conflict', 'is_shared'];
 
 		if (options.includeTimestamps) {
 			output.push('updated_time');
@@ -717,7 +717,9 @@ export default class Note extends BaseItem {
 		}
 
 		syncDebugLog.info('Save Note: N:', o);
-
+		// 生成摘要
+		o.abstract = "放大了会计分录凯撒积分卡垃圾费卡拉季";
+		o.thumb = "放大了会计分录凯撒积分卡垃圾费卡拉季";
 		const note = await super.save(o, options);
 
 		const changeSource = options && options.changeSource ? options.changeSource : null;

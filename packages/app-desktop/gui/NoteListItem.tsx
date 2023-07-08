@@ -14,7 +14,8 @@ const StyledRoot = styled.div`
 	max-width: 100%;
 	box-sizing: border-box;
 	display: flex;
-	align-items: stretch;
+	// align-items: stretch;
+	flex-direction: column;
 	position: relative;
 	background-color: ${(props: any) => props.selected ? props.theme.selectedColor : 'none'};
 
@@ -30,6 +31,7 @@ const StyledRoot = styled.div`
 		content: '';
 		border-bottom: 1px solid ${(props: any) => props.theme.dividerColor};
 		width: ${(props: any) => props.width - 32}px;
+		height: 20px;
 		position: absolute;
 		bottom: 0;
 		left: 16px;
@@ -114,7 +116,16 @@ function NoteListItem(props: NoteListItemProps, ref: any) {
 	if (item.is_todo && !!item.todo_completed) listItemTitleStyle = { ...listItemTitleStyle, ...props.style.listItemTitleCompleted };
 
 	const displayTitle = Note.displayTitle(item);
+	const displayAbstract = Note.displayAbstract(item);
+	const displayThumb = Note.displayThumb(item);
 	let titleComp = null;
+	let abstractComp = null;
+	let thumbComp = null;
+
+
+	abstractComp = <span>{displayAbstract}</span>;
+	// thumbComp = <img src='{{displayThumb}}'/>;
+	thumbComp = <img src='https://img95.699pic.com/photo/30791/1242.jpg_wh300.jpg' width={80} height={80}/>;
 
 	if (props.highlightedWords.length) {
 		const titleElement = document.createElement('span');
@@ -175,24 +186,31 @@ function NoteListItem(props: NoteListItemProps, ref: any) {
 			className={classNames}
 			onDragOver={props.onNoteDragOver}
 			width={props.width}
-			height={props.height}
+			// height={props.height}
+			height='85'
 			isProvisional={props.isProvisional}
 			selected={props.isSelected}
 			dragItemPosition={dragItemPosition}
 		>
 			{renderCheckbox()}
-			<a
-				ref={anchorRef}
-				onContextMenu={props.onContextMenu}
-				href="#"
-				draggable={true}
-				style={listItemTitleStyle}
-				onClick={onTitleClick}
-				onDragStart={props.onDragStart}
-				data-id={item.id}
-			>
-				{watchedIcon}
-				{titleComp}
+			<a 
+			ref={anchorRef}
+			onContextMenu={props.onContextMenu}
+			href="#"
+			draggable={true}
+			// style={listItemTitleStyle}
+			style={{ display: 'flex', flexDirection: 'row', marginLeft: 30, width: '100%' ,height: 85 }}
+			onClick={onTitleClick}
+			onDragStart={props.onDragStart}
+			data-id={item.id}>
+				<div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: 85 }}>
+					<div style={{ display: 'flex', flexDirection: 'row', width: '100%', height: 85 }}>
+						{watchedIcon}
+						{titleComp}
+					</div>
+					{abstractComp}
+				</div>
+				{thumbComp}
 			</a>
 		</StyledRoot>
 	);

@@ -368,6 +368,7 @@ export default class BaseApplication {
 				notes = await Note.previews(parentId, options);
 			}
 		}
+		appLogger.debug('Refreshing notes:', notes);
 
 		this.store().dispatch({
 			type: 'SET_HIGHLIGHTED',

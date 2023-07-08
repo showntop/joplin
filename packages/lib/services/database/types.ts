@@ -176,6 +176,8 @@ export interface NoteEntity {
   'source_application'?: string;
   'source_url'?: string;
   'title'?: string;
+  'abstract'?: string;
+  'thumb'?: string;
   'todo_completed'?: number;
   'todo_due'?: number;
   'updated_time'?: number;

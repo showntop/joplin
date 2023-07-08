@@ -811,6 +811,18 @@ export default class BaseItem extends BaseModel {
 		return item.title ? item.title : _('Untitled');
 	}
 
+	public static displayAbstract(item: any) {
+		if (!item) return '';
+		// if (item.encryption_applied) return `🔑 ${_('Encrypted')}`;
+		return item.abstract ? item.abstract : _('');
+	}
+
+	public static displayThumb(item: any) {
+		if (!item) return '';
+		// if (item.encryption_applied) return `🔑 ${_('Encrypted')}`;
+		return item.thumb ? item.thumb : _('');
+	}
+
 	public static async markAllNonEncryptedForSync() {
 		const classNames = this.encryptableItemClassNames();
 
