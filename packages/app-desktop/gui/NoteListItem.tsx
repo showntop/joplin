@@ -16,6 +16,7 @@ const StyledRoot = styled.div`
 	display: flex;
 	// align-items: stretch;
 	flex-direction: column;
+	padding: 12px;
 	position: relative;
 	background-color: ${(props: any) => props.selected ? props.theme.selectedColor : 'none'};
 
@@ -117,15 +118,15 @@ function NoteListItem(props: NoteListItemProps, ref: any) {
 
 	const displayTitle = Note.displayTitle(item);
 	const displayAbstract = Note.displayAbstract(item);
-	const displayThumb = Note.displayThumb(item);
+	const displayCover = Note.displayCover(item);
 	let titleComp = null;
 	let abstractComp = null;
-	let thumbComp = null;
+	let coverComp = null;
 
 
-	abstractComp = <span style={{overflow: 'hidden', color: 'black'	}}>{displayAbstract}</span>;
-	// thumbComp = <img src='{{displayThumb}}'/>;
-	thumbComp = <img src='https://img95.699pic.com/photo/30791/1242.jpg_wh300.jpg' width={80} height={80}/>;
+	abstractComp = <span style={{overflow: 'hidden', color: 'black', wordBreak: 'break-all'	}}>{displayAbstract}</span>;
+	coverComp = <img src={displayCover} width={80} height={80}/>;
+	// coverComp = <img src='https://img95.699pic.com/photo/30791/1242.jpg_wh300.jpg' width={80} height={80}/>;
 
 	if (props.highlightedWords.length) {
 		const titleElement = document.createElement('span');
@@ -199,7 +200,7 @@ function NoteListItem(props: NoteListItemProps, ref: any) {
 			href="#"
 			draggable={true}
 			// style={listItemTitleStyle}
-			style={{ display: 'flex', flexDirection: 'row', marginLeft: 30, width: '100%' ,height: 85 }}
+			style={{ display: 'flex', flexDirection: 'row', width: '100%' ,height: 85 }}
 			onClick={onTitleClick}
 			onDragStart={props.onDragStart}
 			data-id={item.id}>
@@ -210,7 +211,7 @@ function NoteListItem(props: NoteListItemProps, ref: any) {
 					</div>
 					{abstractComp}
 				</div>
-				{thumbComp}
+				{coverComp}
 			</a>
 		</StyledRoot>
 	);

@@ -27,5 +27,6 @@ export async function formNoteToNote(formNote: FormNote): Promise<any> {
 		parent_id: formNote.parent_id,
 		title: formNote.title,
 		body: formNote.body,
+		markup_language: formNote.markup_language,
 	};
 }

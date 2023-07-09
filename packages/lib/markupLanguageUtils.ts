@@ -15,6 +15,19 @@ export class MarkupLanguageUtils {
 		throw new Error(`Unsupported markup language: ${language}`);
 	}
 
+	public extractAbstract(language: MarkupLanguage, text: string): string {
+		let abstract: string = "";
+
+		if (language === MarkupLanguage.Any) {
+			abstract = this.lib_(MarkupLanguage.Markdown).extractAbstract(text);
+			abstract = this.lib_(MarkupLanguage.Html).extractAbstract(text);
+		} else {
+			abstract = this.lib_(language).extractAbstract(text);
+		}
+
+		return abstract;
+	}
+
 	public extractImageUrls(language: MarkupLanguage, text: string): string[] {
 		let urls: string[] = [];
 

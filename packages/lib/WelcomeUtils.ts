@@ -91,6 +91,7 @@ class WelcomeUtils {
 				parent_id: output.defaultFolderId,
 				title: noteAsset.title,
 				body: noteBody,
+				markup_language: 1,
 			});
 
 			// if (noteAsset.tags) await Tag.setNoteTagsByTitles(note.id, noteAsset.tags);

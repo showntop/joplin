@@ -19,6 +19,7 @@ const urlUtils = require('../urlUtils.js');
 const { isImageMimeType } = require('../resourceUtils');
 const { MarkupToHtml } = require('@joplin/renderer');
 const { ALL_NOTES_FILTER_ID } = require('../reserved-ids');
+import markupLanguageUtils from '../markupLanguageUtils';
 
 export default class Note extends BaseItem {
 
@@ -312,7 +313,7 @@ export default class Note extends BaseItem {
 	public static previewFields(options: any = null) {
 		options = { includeTimestamps: true, ...options };
 
-		const output = ['id', 'title', 'abstract', 'thumb', 'is_todo', 'todo_completed', 'todo_due', 'parent_id', 'encryption_applied', 'order', 'markup_language', 'is_conflict', 'is_shared'];
+		const output = ['id', 'title', 'abstract', 'cover', 'is_todo', 'todo_completed', 'todo_due', 'parent_id', 'encryption_applied', 'order', 'markup_language', 'is_conflict', 'is_shared'];
 
 		if (options.includeTimestamps) {
 			output.push('updated_time');
@@ -716,10 +717,13 @@ export default class Note extends BaseItem {
 			}
 		}
 
-		syncDebugLog.info('Save Note: N:', o);
 		// 生成摘要
-		o.abstract = "放大了会计分录凯撒积分卡垃圾费卡拉季";
-		o.thumb = "放大了会计分录凯撒积分卡垃圾费卡拉季";
+		o.abstract = markupLanguageUtils.extractAbstract(o.markup_language, o.body);
+		let urls = markupLanguageUtils.extractImageUrls(o.markup_language, o.body)
+		if(urls.length > 0){
+			o.cover = urls[0];
+		}
+		syncDebugLog.info('Save Note: N:', o);
 		const note = await super.save(o, options);
 
 		const changeSource = options && options.changeSource ? options.changeSource : null;

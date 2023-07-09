@@ -46,6 +46,12 @@ class HtmlUtils {
 		return selfClosingElements.includes(tagName.toLowerCase());
 	}
 
+
+	public extractAbstract(html: string) {
+		if (!html) return "";
+		return html.substring(0, 380)
+	}
+
 	// Returns the **encoded** URLs, so to be useful they should be decoded again before use.
 	private extractUrls(regex: RegExp, html: string) {
 		if (!html) return [];
