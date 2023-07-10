@@ -16,7 +16,10 @@ const StyledRoot = styled.div`
 	display: flex;
 	// align-items: stretch;
 	flex-direction: column;
-	padding: 12px;
+	padding-left: 12px;
+	padding-right: 12px;
+	padding-top: 6px;
+	padding-bottom: 6px;
 	position: relative;
 	background-color: ${(props: any) => props.selected ? props.theme.selectedColor : 'none'};
 
@@ -31,7 +34,7 @@ const StyledRoot = styled.div`
 	&::before {
 		content: '';
 		border-bottom: 1px solid ${(props: any) => props.theme.dividerColor};
-		width: ${(props: any) => props.width - 32}px;
+		width: ${(props: any) => props.width - 16}px;
 		height: 20px;
 		position: absolute;
 		bottom: 0;
@@ -124,9 +127,11 @@ function NoteListItem(props: NoteListItemProps, ref: any) {
 	let coverComp = null;
 
 
-	abstractComp = <span style={{overflow: 'hidden', color: 'black', wordBreak: 'break-all'	}}>{displayAbstract}</span>;
-	coverComp = <img src={displayCover} width={80} height={80}/>;
-	// coverComp = <img src='https://img95.699pic.com/photo/30791/1242.jpg_wh300.jpg' width={80} height={80}/>;
+	abstractComp = <span style={{ overflow: 'hidden', color: 'black', wordBreak: 'break-all', height: 50, fontSize: '12px' }}>
+		{displayAbstract}</span>;
+	if (displayCover) {
+		coverComp = <img src={displayCover} width={60} height={60}/>;
+	}
 
 	if (props.highlightedWords.length) {
 		const titleElement = document.createElement('span');
@@ -162,7 +167,7 @@ function NoteListItem(props: NoteListItemProps, ref: any) {
 		// https://reactjs.org/docs/dom-elements.html#dangerouslysetinnerhtml
 		titleComp = <span dangerouslySetInnerHTML={{ __html: titleElement.outerHTML }}></span>;
 	} else {
-		titleComp = <span style={{fontSize: 16, fontWeight: 'bold'}}>{displayTitle}</span>;
+		titleComp = <span style={{ fontSize: 18, fontWeight: 'bold', minWidth: 100, overflow: 'hidden' }}>{displayTitle}</span>;
 	}
 
 	const watchedIconStyle = {
@@ -194,18 +199,18 @@ function NoteListItem(props: NoteListItemProps, ref: any) {
 			dragItemPosition={dragItemPosition}
 		>
 			{renderCheckbox()}
-			<a 
-			ref={anchorRef}
-			onContextMenu={props.onContextMenu}
-			href="#"
-			draggable={true}
-			// style={listItemTitleStyle}
-			style={{ display: 'flex', flexDirection: 'row', width: '100%' ,height: 85 }}
-			onClick={onTitleClick}
-			onDragStart={props.onDragStart}
-			data-id={item.id}>
+			<a
+				ref={anchorRef}
+				onContextMenu={props.onContextMenu}
+				href="#"
+				draggable={true}
+				// style={listItemTitleStyle}
+				style={{ display: 'flex', flexDirection: 'row', width: '100%', height: 85 }}
+				onClick={onTitleClick}
+				onDragStart={props.onDragStart}
+				data-id={item.id}>
 				<div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: 85 }}>
-					<div style={{ display: 'flex', flexDirection: 'row', width: '100%' }}>
+					<div style={{ display: 'flex', flexDirection: 'row', width: '100%', height: 23 }}>
 						{watchedIcon}
 						{titleComp}
 					</div>

@@ -719,10 +719,15 @@ export default class Note extends BaseItem {
 
 		// 生成摘要
 		o.abstract = markupLanguageUtils.extractAbstract(o.markup_language, o.body);
-		let urls = markupLanguageUtils.extractImageUrls(o.markup_language, o.body)
-		if(urls.length > 0){
-			o.cover = urls[0];
+
+		const urls = markupLanguageUtils.extractImageUrls(o.markup_language, o.body);
+		if (urls.length > 0) {
+			const resource = await Resource.load(Resource.urlToId(urls[0]));
+			// if (!resource) throw new Error(`No such resource: ${cover}`);
+			o.cover = Resource.fullPath(resource);
 		}
+
+
 		syncDebugLog.info('Save Note: N:', o);
 		const note = await super.save(o, options);
 
