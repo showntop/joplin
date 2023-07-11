@@ -14,8 +14,7 @@ const StyledRoot = styled.div`
 	max-width: 100%;
 	box-sizing: border-box;
 	display: flex;
-	// align-items: stretch;
-	flex-direction: column;
+	align-items: stretch;
 	padding-left: 12px;
 	padding-right: 12px;
 	padding-top: 6px;
