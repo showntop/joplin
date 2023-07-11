@@ -35,7 +35,6 @@ const StyledRoot = styled.div`
 		content: '';
 		border-bottom: 1px solid ${(props: any) => props.theme.dividerColor};
 		width: ${(props: any) => props.width - 16}px;
-		height: 20px;
 		position: absolute;
 		bottom: 0;
 		left: 16px;
