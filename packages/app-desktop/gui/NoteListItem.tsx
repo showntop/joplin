@@ -127,10 +127,10 @@ function NoteListItem(props: NoteListItemProps, ref: any) {
 	let coverComp = null;
 
 
-	abstractComp = <span style={{ overflow: 'hidden', color: 'black', wordBreak: 'break-all', height: 50, fontSize: '12px' }}>
+	abstractComp = <span style={{ overflow: 'hidden', color: 'black', wordBreak: 'break-all', fontSize: '12px' }}>
 		{displayAbstract}</span>;
 	if (displayCover) {
-		coverComp = <img src={displayCover} width={60} height={60}/>;
+		coverComp = <img src={displayCover} width={60} height='auto'/>;
 	}
 
 	if (props.highlightedWords.length) {
@@ -167,7 +167,8 @@ function NoteListItem(props: NoteListItemProps, ref: any) {
 		// https://reactjs.org/docs/dom-elements.html#dangerouslysetinnerhtml
 		titleComp = <span dangerouslySetInnerHTML={{ __html: titleElement.outerHTML }}></span>;
 	} else {
-		titleComp = <span style={{ fontSize: 18, fontWeight: 'bold', minWidth: 100, overflow: 'hidden' }}>{displayTitle}</span>;
+		titleComp = <span style={{ fontSize: 18, fontWeight: 'bold', minWidth: 100, overflow: 'hidden',
+			wordBreak: 'break-all', whiteSpace: 'nowrap', textOverflow: 'ellipsis' }}>{displayTitle}</span>;
 	}
 
 	const watchedIconStyle = {
@@ -192,8 +193,8 @@ function NoteListItem(props: NoteListItemProps, ref: any) {
 			className={classNames}
 			onDragOver={props.onNoteDragOver}
 			width={props.width}
-			// height={props.height}
-			height='85'
+			height={props.height}
+			// height='85'
 			isProvisional={props.isProvisional}
 			selected={props.isSelected}
 			dragItemPosition={dragItemPosition}
@@ -204,18 +205,18 @@ function NoteListItem(props: NoteListItemProps, ref: any) {
 				onContextMenu={props.onContextMenu}
 				href="#"
 				draggable={true}
-				// style={listItemTitleStyle}
-				style={{ display: 'flex', flexDirection: 'row', width: '100%', height: 85 }}
+				style={listItemTitleStyle}
+				// style={{ display: 'flex', flexDirection: 'row', width: '100%'}}
 				onClick={onTitleClick}
 				onDragStart={props.onDragStart}
 				data-id={item.id}>
-				<div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: 85 }}>
-					<div style={{ display: 'flex', flexDirection: 'row', width: '100%', height: 23 }}>
+				<span style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
+					<span style={{ display: 'flex', flexDirection: 'row', width: '100%' }}>
 						{watchedIcon}
 						{titleComp}
-					</div>
+					</span>
 					{abstractComp}
-				</div>
+				</span>
 				{coverComp}
 			</a>
 		</StyledRoot>
