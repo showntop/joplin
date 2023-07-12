@@ -450,6 +450,7 @@
  "Items": "条目",
  "Items that cannot be decrypted": "无法解密的条目",
  "Items that cannot be synchronised": "无法同步的条目",
+ "Joplin": "牛刀笔记",
  "Joplin can synchronise your notes using various providers. Select one from the list below.": "Joplin 可以使用多种途径来同步您的笔记。可以从下列选项中选择一种方式。",
  "Joplin Cloud": "Joplin Cloud",
  "Joplin Cloud email": "Joplin Cloud 邮箱",

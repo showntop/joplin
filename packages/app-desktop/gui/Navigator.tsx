@@ -1,6 +1,7 @@
 const React = require('react');
 const { connect } = require('react-redux');
 import Setting from '@joplin/lib/models/Setting';
+import { _ } from '@joplin/lib/locale';
 import { AppState } from '../app.reducer';
 const bridge = require('@electron/remote').require('./bridge').default;
 
@@ -12,8 +13,8 @@ class NavigatorComponent extends React.Component<Props> {
 	public UNSAFE_componentWillReceiveProps(newProps: Props) {
 		if (newProps.route) {
 			const screenInfo = this.props.screens[newProps.route.routeName];
-			const devMarker = Setting.value('env') === 'dev' ? ` (DEV - ${Setting.value('profileDir')})` : '';
-			const windowTitle = [`Joplin${devMarker}`];
+			const devMarker = Setting.value('env') === 'dev' ? ` (DEV - ${Setting.value('profileDir')})` : _('Joplin');
+			const windowTitle = [`${_('Joplin')}${devMarker}`];
 			if (screenInfo.title) {
 				windowTitle.push(screenInfo.title());
 			}

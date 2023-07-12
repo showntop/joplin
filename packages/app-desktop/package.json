@@ -1,7 +1,7 @@
 {
   "name": "@joplin/app-desktop",
   "version": "2.12.4",
-  "description": "Joplin for Desktop",
+  "description": "牛刀笔记桌面版",
   "main": "main.js",
   "private": true,
   "scripts": {
@@ -28,7 +28,7 @@
   "build": {
     "appId": "net.cozic.joplin-desktop",
     "compression": "normal",
-    "productName": "Joplin",
+    "productName": "牛刀笔记",
     "npmRebuild": false,
     "afterSign": "./tools/notarizeMacApp.js",
     "extraResources": [
